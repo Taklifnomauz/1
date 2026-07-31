@@ -31,25 +31,29 @@
             overflow-x: hidden;
         }
 
-        /* Muzika tugmasi */
+        /* Musiqa bloki va animatsiyalar */
         .audio-player {
             position: fixed;
             top: 20px;
             right: 20px;
             z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         .music-btn {
-            background: rgba(197, 160, 89, 0.9);
+            background: #c5a059;
             color: #fff;
             border: none;
             width: 50px;
             height: 50px;
             border-radius: 50%;
             cursor: pointer;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             font-size: 20px;
             transition: all 0.3s ease;
+            flex-shrink: 0;
         }
 
         .music-btn.playing {
@@ -58,6 +62,40 @@
 
         @keyframes spin {
             100% { transform: rotate(360deg); }
+        }
+
+        /* O'ng tomondagi yorqin ko'rsatkich */
+        .music-hint {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #ffffff;
+            color: #2c2c2c;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.25);
+            border: 2px solid #c5a059;
+            transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            transform-origin: right center;
+        }
+
+        .hint-arrow {
+            color: #c5a059;
+            font-size: 1rem;
+            animation: bounceArrow 1s infinite alternate;
+        }
+
+        @keyframes bounceArrow {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-6px); }
+        }
+
+        .music-hint.hide-hint {
+            opacity: 0;
+            transform: scale(0) rotate(360deg);
+            pointer-events: none;
         }
 
         /* Hero / Kirish qismi */
@@ -324,23 +362,24 @@
 </head>
 <body>
 
-   <!-- Fon Musiqasi Player va Strelka Ko'rsatkichi -->
-<div class="audio-player">
-    <audio id="bgMusic" loop>
-        <source src="audio.mp3" type="audio/mp3">
-    </audio>
+    <!-- Fon Musiqasi Player va Strelka Ko'rsatkichi -->
+    <div class="audio-player">
+        <audio id="bgMusic" loop>
+            <source src="audio.mp3" type="audio/mp3">
+        </audio>
 
-    <!-- Qimirlab turadigan strelka va ko'rsatkich -->
-    <div class="music-hint" id="musicHint">
-        <span>Musiqani yoqing</span>
-        <i class="fas fa-arrow-right hint-arrow"></i>
+        <!-- O'ng tomondagi yorqin strelka va ko'rsatkich -->
+        <div class="music-hint" id="musicHint">
+            <i class="fas fa-arrow-left hint-arrow"></i>
+            <span>Musiqani yoqing</span>
+        </div>
+
+        <!-- Musiqa tugmasi -->
+        <button class="music-btn" id="musicToggle" onclick="toggleMusic()">
+            <i class="fas fa-music"></i>
+        </button>
     </div>
 
-    <!-- Musiqa tugmasi -->
-    <button class="music-btn" id="musicToggle" onclick="toggleMusic()">
-        <i class="fas fa-music"></i>
-    </button>
-</div>
     <!-- HERO QISMI -->
     <div class="hero">
         <div class="bismillah">Bismillahir Rohmanir Rohiym</div>
@@ -463,10 +502,14 @@
         function toggleMusic() {
             const music = document.getElementById("bgMusic");
             const btn = document.getElementById("musicToggle");
+            const hint = document.getElementById("musicHint");
             
             if (music.paused) {
                 music.play();
                 btn.classList.add("playing");
+                if (hint) {
+                    hint.classList.add("hide-hint");
+                }
             } else {
                 music.pause();
                 btn.classList.remove("playing");
@@ -485,10 +528,8 @@
                 return;
             }
 
-            // Siz yuborgan Google Apps Script URL linki
             const scriptURL = "https://script.google.com/macros/s/AKfycbz8mnvzlagzRrCet5CvCHJROR51zkqmjXNNaTumBYudf51GRMSOJNM08wJoaNMDCpS0/exec";
 
-            // Yuborilayotgan paytda tugmani bloklab turish
             submitBtn.innerText = "Yuborilmoqda...";
             submitBtn.disabled = true;
 
@@ -501,7 +542,6 @@
                 body: JSON.stringify({ name: guestName })
             })
             .then(() => {
-                // Muvaffaqiyatli xabarni ko'rsatish
                 nameInput.style.display = 'none';
                 submitBtn.style.display = 'none';
                 successMsg.style.display = 'block';
