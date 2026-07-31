@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To'y Taklifnomasi</title>
+    <!-- Google Fonts & FontAwesome Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Cinzel:wght@500;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-color: #c5a059; /* Shaxona oltin rang */
+            --bg-color: #faf9f6;
+            --text-color: #2c2c2c;
+            --light-gold: #f4ece1;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* Muzika tugmasi (Floating Audio Player) */
+        .audio-player {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .music-btn {
+            background: rgba(197, 160, 89, 0.9);
+            color: #fff;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-size: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .music-btn.playing {
+            animation: spin 4s linear infinite;
+        }
+
+        @keyframes spin {
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Hero / Kirish qismi */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .bismillah {
+            font-family: 'Alex Brush', cursive;
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .hero h3 {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 3px;
+            font-weight: 300;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        .names {
+            font-family: 'Alex Brush', cursive;
+            font-size: 4rem;
+            margin: 20px 0;
+            color: #fff;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .date-badge {
+            border-top: 1px solid var(--primary-color);
+            border-bottom: 1px solid var(--primary-color);
+            padding: 10px 25px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+        }
+
+        /* Sektsiyalar uchun umumiy uslub */
+        section {
+            padding: 60px 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            color: var(--primary-color);
+            font-size: 1.8rem;
+            margin-bottom: 25px;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '✦';
+            display: block;
+            font-size: 1rem;
+            margin-top: 5px;
+        }
+
+        /* Kelin va Kuyov qismi */
+        .couple-img-wrapper {
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 25px;
+            border-radius: 50%;
+            border: 4px solid var(--primary-color);
+            padding: 5px;
+            overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .couple-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+
+        .invitation-text {
+            font-size: 1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .family-names {
+            font-weight: 600;
+            color: var(--text-color);
+            margin-top: 15px;
+        }
+
+        /* Taymer / Vaqt hisoblagich */
+        .timer-container {
+            background-color: var(--light-gold);
+            padding: 30px 20px;
+            border-radius: 15px;
+            margin: 40px 0;
+        }
+
+        .countdown {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .time-box {
+            background: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            min-width: 65px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        .time-box span {
+            display: block;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .time-box p {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            color: #777;
+        }
+
+        /* To'yxona qismi */
+        .venue-card {
+            background: #fff;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-top: 20px;
+        }
+
+        .venue-img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+        }
+
+        .venue-info {
+            padding: 25px;
+        }
+
+        .venue-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+
+        .venue-address {
+            font-size: 0.95rem;
+            color: #666;
+            margin-bottom: 20px;
+        }
+
+        /* Dynamic Buttons */
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            padding: 14px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background-color: #b08d4b;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: #25D366; /* WhatsApp/Telegram yashil desing */
+            color: #fff;
+        }
+
+        .btn-outline {
+            border: 2px solid var(--primary-color);
+            color: var(--primary-color);
+            background: transparent;
+        }
+
+        /* Footer */
+        footer {
+            padding: 30px;
+            background-color: var(--light-gold);
+            font-size: 0.85rem;
+            color: #777;
+        }
+
+        /* Mobil Moslashuvchanlik */
+        @media (max-width: 480px) {
+            .names { font-size: 3.2rem; }
+            .bismillah { font-size: 2rem; }
+            section { padding: 40px 15px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fon Musiqasi Player -->
+    <div class="audio-player">
+        <!-- Musiqa faylingiz manzilini audio/minus.mp3 ga o'zgartiring -->
+        <audio id="bgMusic" loop>
+            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+        </audio>
+        <button class="music-btn" id="musicToggle" onclick="toggleMusic()">
+            <i class="fas fa-music"></i>
+        </button>
+    </div>
+
+    <!-- HERO QISMI -->
+    <div class="hero">
+        <div class="bismillah">Bismillahir Rohmanir Rohiym</div>
+        <h3>Bizning To'yimizga Taklif Etamiz</h3>
+        <h1 class="names">Ali & Fotima</h1>
+        <div class="date-badge">25 . 10 . 2026</div>
+    </div>
+
+    <!-- ILIQ SO'ZLAR VA OILA NOMIDAN -->
+    <section>
+        <h2 class="section-title">Baxt Kechasi</h2>
+        
+        <!-- Kelin-kuyov rasmi (O'zingiznikiga almashtirasiz) -->
+        <div class="couple-img-wrapper">
+            <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=500&q=80" alt="Kelin Kuyov" class="couple-img">
+        </div>
+
+        <p class="invitation-text">
+            «Alloh taolo o'zining kalomida: "Uning alomatlaridan biri – sizlar orom olishingiz uchun o'zingizdan juftlar yaratgani va o'rtangizda muhabat hamda marhamat paydo qilganidir..." degan»
+        </p>
+        
+        <p class="invitation-text">
+            Hayotimizning eng quvonchli va go'zal kunlaridan biri bo'lmish nikoh to'yimizda siz azizlarni hamroh ko'rishdan behad mamnun bo'lamiz!
+        </p>
+
+        <div class="family-names">
+            <p>Hurlar bilan:</p>
+            <p><strong>[Oila / Ota-onalar Nomi]</strong> oilalari</p>
+        </div>
+    </section>
+
+    <!-- VAQT SANAGICH (COUNTDOWN) -->
+    <section>
+        <div class="timer-container">
+            <h3 style="font-family: 'Cinzel', serif;">Tantanagacha Qoldi:</h3>
+            <div class="countdown" id="countdown">
+                <div class="time-box"><span id="days">00</span><p>Kun</p></div>
+                <div class="time-box"><span id="hours">00</span><p>Soat</p></div>
+                <div class="time-box"><span id="minutes">00</span><p>Daqiqa</p></div>
+                <div class="time-box"><span id="seconds">00</span><p>Soniya</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TO'YXONA VA MANZIL -->
+    <section>
+        <h2 class="section-title">Tantana Joyi</h2>
+        
+        <div class="venue-card">
+            <!-- To'yxona rasmi -->
+            <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80" alt="To'yxona" class="venue-img">
+            
+            <div class="venue-info">
+                <h3 class="venue-name">"Versal" Restorani</h3>
+                <p class="venue-address"><i class="fas fa-map-marker-alt" style="color: var(--primary-color);"></i> Toshkent shahri, Yunusobod tumani, Amir Temur ko'chasi 15-uy</p>
+                <p style="margin-bottom: 20px; font-weight: 600;">Soat: 18:00 da</p>
+
+                <div class="btn-group">
+                    <!-- Yandex/Google Map knopkasi -->
+                    <a href="https://maps.google.com" target="_blank" class="btn btn-primary">
+                        <i class="fas fa-location-arrow"></i> Xaritadan ko'rish (Navigatsiya)
+                    </a>
+                    
+                    <!-- Qo'ng'iroq knopkasi -->
+                    <a href="tel:+998901234567" class="btn btn-outline">
+                        <i class="fas fa-phone"></i> Bog'lanish: +998 (90) 123-45-67
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TASHRIFNI TASDIQLASH (RSVP) -->
+    <section>
+        <h2 class="section-title">Tashrifni Tasdiqlash</h2>
+        <p style="margin-bottom: 20px; color: #666;">Biz uchun tashrifingiz juda muhim. Iltimos, kelishingizni oldindan tasdiqlang:</p>
+        
+        <!-- Telegram orqali javob yuborish -->
+        <a href="https://t.me/username" target="_blank" class="btn btn-secondary" style="width: 100%;">
+            <i class="fab fa-telegram-plane"></i> Telegram orqali tasdiqlash
+        </a>
+    </section>
+
+    <footer>
+        <p>Sizni to'yimizda kutib qolamiz!</p>
+        <p style="margin-top: 5px; font-size: 0.75rem;">© 2026 Ali & Fotima</p>
+    </footer>
+
+    <!-- SCRIPT (INTERAKTIV QISMLAR) -->
+    <script>
+        // 1. Vaqt sanagich JS
+        const weddingDate = new Date("October 25, 2026 18:00:00").getTime();
+
+        const timer = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = weddingDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floorZo'r g'oya! Zamonaviy, telefon ekraniga to'liq moslashgan (responsive) va islomiy go'zal uslubdagi **HTML + CSS + JavaScript** sayt kodini tayyorlab beraman. 
+
+GitHub Pages orqali bepul va tezda joylashtirishingiz uchun fayllar tuzilmasini **3 qismga** bo'lib olamiz:
+1. **`index.html`** – Saytning barcha matnlari va tugmalari.
+2. **`style.css`** – Zamonaviy dizayn, animatsiyalar va telefon o'lchamiga moslik.
+3. **`script.js`** – Musiqa pleyeri va sanagich (countdown) mantig'i.
+
+---
+
+### 🎨 Rasmlar va Musiqa masalasi (Muhim)
+
+* **Rasmlar:** Men kod ichiga sifatli, foni mos keladigan tayyor namuna (Unsplash) rasmlarining havolasini joylab ketaman. Keyinchalik o'zingizning haqiqiy rasmlaringiz bilan almashtirishingiz judayam oson bo'ladi.
+* **Musiqiy audio (Minus):** Musiqa avtopleyi (saytga kirganda o'zi chalinishi) zamonaviy telefondagi brauzerlar qoidasi bo'yicha taqiqlangan. Shuning uchun saytda chiroyli **"🔊 Musiqa" tugmasi** bo'ladi, uni bir marta bossa minus qo'shiq fonda chalinadi.
+
+---
+
+### 📄 1. `index.html` fayli
+
+```html
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taklifnoma — BAXT TO'YI</title>
+    <!-- Google Fonts -->
+    <link href="[https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap](https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap)" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Musiqa Boshqaruvi -->
+    <button id="musicToggle" class="music-btn" aria-label="Musiqa">
+        <span id="musicIcon">🎵</span>
+    </button>
+    <audio id="bgMusic" loop src="[https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3](https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3)"></audio>
+
+    <div class="container">
+        
+        <!-- HEADER / BISMILLAH -->
+        <header class="header card">
+            <p class="bismillah-ar">بِسْمِ ٱللَّٰهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</p>
+            <p class="bismillah-uz">«Mehribon va rahmli Alloh nomi bilan»</p>
+            <div class="divider">❖</div>
+            <p class="quran-ayata">
+                «Uning alomatlaridan biri — sizlar orom olishingiz uchun o'zingizdan juftlar yaratgani va orangizda ahillik hamda mehribonlik paydo qilganidir...» <br>
+                <span>(Rum surasi, 21-oyat)</span>
+            </p>
+        </header>
+
+        <!-- KELIN & KUYOV -->
+        <section class="couple card">
+            <h2>Sizni Baxt To'yimizga Taklif Etamiz!</h2>
+            <div class="photo-frame">
+                <img src="[https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80](https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=600&q=80)" alt="Kelin-Kuyov" id="coupleImg">
+            </div>
+            <h1 class="names">Ali & Fotima</h1>
+            <p class="parents-text">
+                Hurmatli qadrdonlar va aziz mehmonlar! <br>
+                Oilalarimiz nomidan sizlarni farzandlarimizning visol to'yi munosabati bilan yoziladigan dasturxonimizga taklif etamiz.
+            </p>
+        </section>
+
+        <!-- COUNTDOWN (SANOQ) -->
+        <section class="countdown-section card">
+            <h3>To'yimizga qoldi:</h3>
+            <div id="timer" class="timer">
+                <div class="time-box"><span id="days">00</span><p>Kun</p></div>
+                <div class="time-box"><span id="hours">00</span><p>Soat</p></div>
+                <div class="time-box"><span id="minutes">00</span><p>Daqiqa</p></div>
+                <div class="time-box"><span id="seconds">00</span><p>Soniya</p></div>
+            </div>
+        </section>
+
+        <!-- TO'YXONA MALUMOTLARI -->
+        <section class="venue card">
+            <h3>Sizni Kutib Qolamiz</h3>
+            <div class="venue-img-box">
+                <img src="[https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=600&q=80](https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=600&q=80)" alt="To'yxona" id="venueImg">
+            </div>
+            <h4>"VERSAL" Restorani</h4>
+            <p class="address">📍 Toshkent shahri, Yunusobod tumani, A.Temur ko'chasi, 10-uy</p>
+            <p class="date-time">📅 <strong>2026-yil 15-Avgust</strong> | 🕔 Soat: <strong>18:00 da</strong></p>
+
+            <div class="btn-group">
+                <a href="[https://maps.google.com](https://maps.google.com)" target="_blank" class="btn btn-primary">🗺 Xaritadan Ko'rish (Lokatsiya)</a>
+                <a href="tel:+998901234567" class="btn btn-secondary">📞 Bog'lanish</a>
+            </div>
+        </section>
+
+        <!-- DUA & FOOTER -->
+        <footer class="footer card">
+            <p class="dua-text">
+                «Tashrifingiz bilan xonadonimizga quvonch va fayz bag

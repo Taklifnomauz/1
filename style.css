@@ -1,0 +1,226 @@
+:root {
+    --primary-color: #c5a059; /* Shoxona oltin rang */
+    --bg-color: #fcfbf7;      /* Yumshoq, iliq krem fon */
+    --text-color: #2b2b2b;    /* To'q matn */
+    --card-bg: #ffffff;
+    --shadow: 0 10px 30px rgba(197, 160, 89, 0.15);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Montserrat', sans-serif;
+    display: flex;
+    justify-content: center;
+    padding: 15px;
+}
+
+/* Telefon o'lchamiga moslashuvchan konteyner */
+.container {
+    width: 100%;
+    max-width: 450px; /* Telefon ekrani formati */
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* Kartalar ko'rinishi */
+.card {
+    background: var(--card-bg);
+    border: 1px solid rgba(197, 160, 89, 0.3);
+    border-radius: 20px;
+    padding: 25px 20px;
+    text-align: center;
+    box-shadow: var(--shadow);
+    position: relative;
+}
+
+/* Bismillah va Oyat */
+.bismillah-ar {
+    font-family: 'Amiri', serif;
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-bottom: 5px;
+}
+
+.bismillah-uz {
+    font-size: 0.85rem;
+    color: #777;
+    font-style: italic;
+}
+
+.divider {
+    color: var(--primary-color);
+    margin: 15px 0;
+    font-size: 1.2rem;
+}
+
+.quran-ayata {
+    font-family: 'Amiri', serif;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+.quran-ayata span {
+    font-size: 0.8rem;
+    color: var(--primary-color);
+    display: block;
+    margin-top: 5px;
+}
+
+/* Kelin Kuyov bo'limi */
+.couple h2 {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #888;
+    margin-bottom: 15px;
+}
+
+.photo-frame {
+    width: 180px;
+    height: 180px;
+    margin: 0 auto 15px;
+    border-radius: 50%;
+    border: 3px solid var(--primary-color);
+    padding: 5px;
+    overflow: hidden;
+}
+
+.photo-frame img, .venue-img-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.venue-img-box img {
+    border-radius: 12px;
+}
+
+.names {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 10px;
+}
+
+.parents-text {
+    font-size: 0.95rem;
+    line-height: 1.5;
+    color: #555;
+}
+
+/* Countdown */
+.timer {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 15px;
+}
+
+.time-box {
+    background: #fdfaf3;
+    border: 1px solid var(--primary-color);
+    border-radius: 10px;
+    padding: 10px;
+    min-width: 65px;
+}
+
+.time-box span {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: var(--primary-color);
+}
+
+.time-box p {
+    font-size: 0.75rem;
+    color: #666;
+}
+
+/* To'yxona va Tugmalar */
+.venue-img-box {
+    width: 100%;
+    height: 180px;
+    border-radius: 12px;
+    overflow: hidden;
+    margin: 15px 0;
+}
+
+.venue h4 {
+    font-size: 1.3rem;
+    color: var(--primary-color);
+    margin-bottom: 8px;
+}
+
+.address, .date-time {
+    font-size: 0.9rem;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+.btn-group {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.btn {
+    text-decoration: none;
+    padding: 12px 20px;
+    border-radius: 30px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: #fff;
+}
+
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.btn:active {
+    transform: scale(0.98);
+}
+
+/* Musiqa Tugmasi */
+.music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    color: #fff;
+    border: none;
+    font-size: 1.2rem;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 999;
+    cursor: pointer;
+}
+
+.dua-text {
+    font-style: italic;
+    font-size: 0.9rem;
+    color: #555;
+}
+
+.family-name {
+    font-size: 0.95rem;
+    color: #333;
+}
+    
