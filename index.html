@@ -324,16 +324,23 @@
 </head>
 <body>
 
-    <!-- Fon Musiqasi Player -->
-    <div class="audio-player">
-        <audio id="bgMusic" loop>
-            <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
-        </audio>
-        <button class="music-btn" id="musicToggle" onclick="toggleMusic()">
-            <i class="fas fa-music"></i>
-        </button>
+   <!-- Fon Musiqasi Player va Strelka Ko'rsatkichi -->
+<div class="audio-player">
+    <audio id="bgMusic" loop>
+        <source src="audio.mp3" type="audio/mp3">
+    </audio>
+
+    <!-- Qimirlab turadigan strelka va ko'rsatkich -->
+    <div class="music-hint" id="musicHint">
+        <span>Musiqani yoqing</span>
+        <i class="fas fa-arrow-right hint-arrow"></i>
     </div>
 
+    <!-- Musiqa tugmasi -->
+    <button class="music-btn" id="musicToggle" onclick="toggleMusic()">
+        <i class="fas fa-music"></i>
+    </button>
+</div>
     <!-- HERO QISMI -->
     <div class="hero">
         <div class="bismillah">Bismillahir Rohmanir Rohiym</div>
