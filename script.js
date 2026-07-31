@@ -14,6 +14,23 @@ musicBtn.addEventListener('click', () => {
         musicIcon.textContent = '🔊';
     }
     isPlaying = !isPlaying;
+    function toggleMusic() {
+    const music = document.getElementById("bgMusic");
+    const btn = document.getElementById("musicToggle");
+    const hint = document.getElementById("musicHint");
+    
+    if (music.paused) {
+        music.play();
+        btn.classList.add("playing");
+        // Strelkani aylanib tugma ichiga kirib yo'qolishi uchun klass qo'shamiz
+        if (hint) {
+            hint.classList.add("hide-hint");
+        }
+    } else {
+        music.pause();
+        btn.classList.remove("playing");
+    }
+}
 });
 
 // 2. To'y Gacha Bo'lgan Vaqt Sanagichi (Countdown)
