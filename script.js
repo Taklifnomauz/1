@@ -18,7 +18,7 @@ musicBtn.addEventListener('click', () => {
 
 // 2. To'y Gacha Bo'lgan Vaqt Sanagichi (Countdown)
 // Bu yerga to'y sanasini kiriting: YYYY-MM-DD
-const weddingDate = new Date('2026-08-15T18:00:00').getTime();
+const weddingDate = new Date('2026-10-09T18:00:00').getTime();
 
 function updateCountdown() {
     const now = new Date().getTime();
