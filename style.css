@@ -63,21 +63,19 @@
             transform-origin: right center;
         }
 
-        /* Strelkaning chapga-o'ngga qimirlash (bounce) animatsiyasi */
+        /* Strelkaning bounce animatsiyasi */
         .hint-arrow {
             color: var(--primary-color);
             font-size: 0.9rem;
             animation: bounceArrow 1.2s infinite alternate;
         }
 
-       @keyframes bounceArrow {
-    0% { transform: translateX(0); }
-    100% { transform: translateX(5px); } 
-           /* Tugmaga qarab suriladi */
-}
+        @keyframes bounceArrow {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(5px); } 
         }
 
-        /* Tugma bosilganda strelkaning aylanib logo ichiga kirib yo'qolishi */
+        /* Tugma bosilganda ko'rsatkich yo'qolishi */
         .music-hint.hide-hint {
             opacity: 0;
             transform: scale(0) rotate(-360deg);
@@ -110,16 +108,16 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Telefon o'lchamiga moslashuvchan konteyner */
+        /* Mobile Container */
         .container {
             width: 100%;
-            max-width: 450px; /* Telefon ekrani formati */
+            max-width: 450px; 
             display: flex;
             flex-direction: column;
             gap: 20px;
         }
 
-        /* Kartalar ko'rinishi */
+        /* Card layout */
         .card {
             background: var(--card-bg);
             border: 1px solid rgba(197, 160, 89, 0.3);
@@ -388,7 +386,7 @@
                 Hayotimizning eng quvonchli va go'zal kunida siz azizlarni hamroh ko'rishdan behad mamnun bo'lamiz!
             </p>
             <div class="divider">✦</div>
-            <p class="dua-text">Hurlar bilan:</p>
+            <p class="dua-text">Hurmat bilan:</p>
             <p class="family-name">Soibjonovlar oilasi</p>
         </div>
 
