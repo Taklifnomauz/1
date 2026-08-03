@@ -10,7 +10,8 @@
 
     <style>
         :root {
-            --primary-color: #c5a059; /* Oltin rang */
+            --primary-color: #b8860b; /* Kontrastli oltin-bronza rang */
+            --primary-hover: #966d08;
             --bg-color: #faf9f6;
             --text-color: #2c2c2c;
             --light-gold: #f4ece1;
@@ -31,7 +32,7 @@
             overflow-x: hidden;
         }
 
-        /* Musiqa bloki va animatsiyalar */
+        /* Musiqa bloki */
         .audio-player {
             position: fixed;
             top: 20px;
@@ -43,7 +44,7 @@
         }
 
         .music-btn {
-            background: #c5a059;
+            background: var(--primary-color);
             color: #fff;
             border: none;
             width: 50px;
@@ -64,7 +65,6 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* O'ng tomondagi yorqin ko'rsatkich */
         .music-hint {
             display: flex;
             align-items: center;
@@ -76,20 +76,20 @@
             font-size: 0.85rem;
             font-weight: 600;
             box-shadow: 0 4px 15px rgba(0,0,0,0.25);
-            border: 2px solid #c5a059;
+            border: 2px solid var(--primary-color);
             transition: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
             transform-origin: right center;
         }
 
         .hint-arrow {
-            color: #c5a059;
+            color: var(--primary-color);
             font-size: 1rem;
             animation: bounceArrow 1s infinite alternate;
         }
 
         @keyframes bounceArrow {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-6px); }
+            100% { transform: translateX(6px); }
         }
 
         .music-hint.hide-hint {
@@ -101,7 +101,7 @@
         /* Hero / Kirish qismi */
         .hero {
             min-height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), 
+            background: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), 
                         url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat;
             display: flex;
             flex-direction: column;
@@ -113,34 +113,37 @@
 
         .bismillah {
             font-family: 'Alex Brush', cursive;
-            font-size: 2.5rem;
-            color: var(--primary-color);
+            font-size: 2.8rem;
+            color: #fce8ad;
             margin-bottom: 10px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
         }
 
         .hero h3 {
             font-family: 'Cinzel', serif;
             letter-spacing: 3px;
-            font-weight: 300;
-            font-size: 0.9rem;
+            font-weight: 500;
+            font-size: 0.95rem;
             text-transform: uppercase;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
         }
 
         .names {
             font-family: 'Alex Brush', cursive;
-            font-size: 4rem;
+            font-size: 4.5rem;
             margin: 20px 0;
             color: #fff;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
         }
 
         .date-badge {
-            border-top: 1px solid var(--primary-color);
-            border-bottom: 1px solid var(--primary-color);
+            border-top: 1px solid #fce8ad;
+            border-bottom: 1px solid #fce8ad;
             padding: 10px 25px;
             font-family: 'Cinzel', serif;
             font-size: 1.2rem;
             letter-spacing: 2px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.6);
         }
 
         /* Sektsiyalar */
@@ -156,6 +159,7 @@
             font-size: 1.8rem;
             margin-bottom: 25px;
             position: relative;
+            font-weight: 700;
         }
 
         .section-title::after {
@@ -202,7 +206,9 @@
             background-color: var(--light-gold);
             padding: 30px 20px;
             border-radius: 15px;
-            margin: 40px 0;
+            margin: 20px 0;
+            border: 1px solid var(--primary-color);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
         }
 
         .countdown {
@@ -218,6 +224,7 @@
             border-radius: 10px;
             min-width: 65px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            border: 1px solid rgba(184, 134, 11, 0.2);
         }
 
         .time-box span {
@@ -231,6 +238,7 @@
             font-size: 0.7rem;
             text-transform: uppercase;
             color: #777;
+            font-weight: 600;
         }
 
         /* To'yxona */
@@ -240,6 +248,7 @@
             overflow: hidden;
             box-shadow: 0 10px 30px rgba(0,0,0,0.08);
             margin-top: 20px;
+            border: 1px solid rgba(0,0,0,0.05);
         }
 
         .venue-img {
@@ -257,6 +266,7 @@
             font-size: 1.4rem;
             color: var(--primary-color);
             margin-bottom: 10px;
+            font-weight: 700;
         }
 
         .venue-address {
@@ -265,7 +275,6 @@
             margin-bottom: 20px;
         }
 
-        /* Dynamic Buttons & Form */
         .btn-group {
             display: flex;
             flex-direction: column;
@@ -293,7 +302,7 @@
         }
 
         .btn-primary:hover {
-            background-color: #b08d4b;
+            background-color: var(--primary-hover);
             transform: translateY(-2px);
         }
 
@@ -303,6 +312,11 @@
             background: transparent;
         }
 
+        .btn-outline:hover {
+            background: var(--light-gold);
+        }
+
+        /* RSVP Form */
         .rsvp-form-container {
             background: #fff;
             padding: 30px 20px;
@@ -357,6 +371,8 @@
             .names { font-size: 3.2rem; }
             .bismillah { font-size: 2rem; }
             section { padding: 40px 15px; }
+            .time-box { min-width: 55px; padding: 8px 4px; }
+            .time-box span { font-size: 1.3rem; }
         }
     </style>
 </head>
@@ -368,13 +384,11 @@
             <source src="audio.mp3" type="audio/mp3">
         </audio>
 
-        <!-- O'ng tomondagi yorqin strelka va ko'rsatkich -->
         <div class="music-hint" id="musicHint">
-            <i class="fas fa-arrow-left hint-arrow"></i>
             <span>Musiqani yoqing</span>
+            <i class="fas fa-arrow-right hint-arrow"></i>
         </div>
 
-        <!-- Musiqa tugmasi -->
         <button class="music-btn" id="musicToggle" onclick="toggleMusic()">
             <i class="fas fa-music"></i>
         </button>
@@ -384,7 +398,7 @@
     <div class="hero">
         <div class="bismillah">Bismillahir Rohmanir Rohiym</div>
         <h3>Bizning To'yimizga Taklif Etamiz</h3>
-        <h1 class="names"> Shamsiddin & Gulshoda </h1>
+        <h1 class="names">Shamsiddin & Gulshoda</h1>
         <div class="date-badge">09 . 10 . 2026</div>
     </div>
 
@@ -405,7 +419,7 @@
         </p>
 
         <div class="family-names">
-            <p>Hurlar bilan:</p>
+            <p>Hurmat bilan:</p>
             <p><strong>Soibjonovlar</strong> oilasi</p>
         </div>
     </section>
@@ -413,7 +427,7 @@
     <!-- COUNTDOWN -->
     <section>
         <div class="timer-container">
-            <h3 style="font-family: 'Cinzel', serif;">Tantanagacha Qoldi:</h3>
+            <h3 style="font-family: 'Cinzel', serif; color: var(--primary-color);">Tantanagacha Qoldi:</h3>
             <div class="countdown" id="countdown">
                 <div class="time-box"><span id="days">00</span><p>Kun</p></div>
                 <div class="time-box"><span id="hours">00</span><p>Soat</p></div>
@@ -433,13 +447,13 @@
             <div class="venue-info">
                 <h3 class="venue-name">"BRENDHALL" Restorani</h3>
                 <p class="venue-address"><i class="fas fa-map-marker-alt" style="color: var(--primary-color);"></i> Toshkent shahri, Dehqonobod ko'chasi, 15/14-uy</p>
-                <p style="margin-bottom: 20px; font-weight: 600;">Soat: 18:00 da</p>
+                <p style="margin-bottom: 20px; font-weight: 600; color: var(--primary-color);">Soat: 18:00 da</p>
 
                 <div class="btn-group">
                     <a href="https://yandex.com/maps/?text=Toshkent+Dexkonobod+ko'chasi+15+BRENDHALL" target="_blank" class="btn btn-primary">
                         <i class="fas fa-location-arrow"></i> Xaritadan ko'rish (Navigatsiya)
                     </a>
-                    <a href="tel:+998901234567" class="btn btn-outline">
+                    <a href="tel:+998998417620" class="btn btn-outline">
                         <i class="fas fa-phone"></i> Bog'lanish: +998 (99) 841-76-20
                     </a>
                 </div>
@@ -463,14 +477,14 @@
             <!-- Muvaffaqiyatli tasdiqlanganlik haqidagi xabar -->
             <div id="successMessage" class="success-box">
                 <i class="fas fa-heart" style="font-size: 1.5rem; color: #e53935; display: block; margin-bottom: 10px;"></i>
-                Rahmat! Siz to'y uchun o'z joyingizni band qildingiz!
+                Rahmat! Tashrifingiz muvaffaqiyatli tasdiqlandi.
             </div>
         </div>
     </section>
 
     <footer>
         <p>Sizni to'yimizda kutib qolamiz!</p>
-        <p style="margin-top: 5px; font-size: 0.75rem;">© 2026 Ali & Fotima</p>
+        <p style="margin-top: 5px; font-size: 0.75rem;">© 2026 Shamsiddin & Gulshoda</p>
     </footer>
 
     <!-- SCRIPT -->
@@ -515,7 +529,6 @@
             }
         }
 
-        // Taymer har soniyada yangilanadi
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
