@@ -55,12 +55,34 @@
             font-size: 20px;
             transition: all 0.3s ease;
             flex-shrink: 0;
+            position: relative;
+            
+            /* Musiqa o'chiqligida e'tiborni tortib urib/pulslab turadi */
+            animation: pulseGlow 2s infinite;
         }
 
+        /* Musiqa yoqilganda urish to'xtab, tugma aylanadi */
         .music-btn.playing {
             animation: spin 4s linear infinite;
         }
 
+        /* 1-animatsiya: Urib/pulslab turish */
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(184, 134, 11, 0.7);
+                transform: scale(1);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(184, 134, 11, 0);
+                transform: scale(1.05);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(184, 134, 11, 0);
+                transform: scale(1);
+            }
+        }
+
+        /* 2-animatsiya: Aylanish */
         @keyframes spin {
             100% { transform: rotate(360deg); }
         }
@@ -489,7 +511,7 @@
 
     <!-- SCRIPT -->
     <script>
-        // 1. Musiqa Pleyeri va Strelka Yo'qolishi
+        // 1. Musiqa Pleyeri va Strelka Yo'qolishi / Qaytib Chiqishi
         function toggleMusic() {
             const bgMusic = document.getElementById("bgMusic");
             const musicBtn = document.getElementById("musicToggle");
@@ -497,13 +519,16 @@
 
             if (bgMusic.paused) {
                 bgMusic.play();
-                musicBtn.classList.add("playing");
+                musicBtn.classList.add("playing"); // Aylanishni yoqadi, pulsatsiya to'xtaydi
                 if (musicHint) {
-                    musicHint.classList.add("hide-hint");
+                    musicHint.classList.add("hide-hint"); // "Musiqani yoqing" yozuvini yashiradi
                 }
             } else {
                 bgMusic.pause();
-                musicBtn.classList.remove("playing");
+                musicBtn.classList.remove("playing"); // Aylanish to'xtaydi, qayta pulslaydi
+                if (musicHint) {
+                    musicHint.classList.remove("hide-hint"); // Musiqa o'chsa yozuv qaytib chiqadi
+                }
             }
         }
 
