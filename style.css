@@ -62,6 +62,7 @@
             backdrop-filter: blur(8px);
             box-shadow: 0 4px 15px rgba(0,0,0,0.2);
             transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+            transform-origin: right center;
         }
 
         .hint-arrow {
@@ -96,14 +97,33 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            
+            /* Musiqa o'chiq paytida e'tiborni tortuvchi pulsatsiya effekti */
+            animation: pulseGlow 2s infinite;
         }
 
         .music-btn:hover {
             transform: scale(1.05);
         }
 
+        /* Musiqa pleyer faollashganida pulsatsiya to'xtaydi va tugma aylanadi */
         .music-btn.playing {
-            animation: spin 6s linear infinite;
+            animation: spin 5s linear infinite;
+        }
+
+        @keyframes pulseGlow {
+            0% {
+                box-shadow: 0 0 0 0 rgba(184, 134, 11, 0.7);
+                transform: scale(1);
+            }
+            70% {
+                box-shadow: 0 0 0 15px rgba(184, 134, 11, 0);
+                transform: scale(1.06);
+            }
+            100% {
+                box-shadow: 0 0 0 0 rgba(184, 134, 11, 0);
+                transform: scale(1);
+            }
         }
 
         @keyframes spin {
@@ -677,6 +697,9 @@
             } else {
                 bgMusic.pause();
                 musicBtn.classList.remove("playing");
+                if (musicHint) {
+                    musicHint.classList.remove("hide-hint");
+                }
             }
         }
 
