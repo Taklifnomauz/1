@@ -6,17 +6,18 @@
     <title>To'y Taklifnomasi</title>
 
     <!-- Google Fonts & FontAwesome Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@500;700&family=Great+Vibes&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&family=Amiri:ital,wght@0,400;0,700;1,400&family=Cinzel:wght@500;600;700&family=Great+Vibes&family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
     <style>
         :root {
-            --primary-color: #c5a059; /* Shoxona oltin rang */
+            --primary-color: #B8860B; /* Kontrastli to'q bronza-oltin rang */
+            --primary-dark: #8B6508;
             --bg-color: #fcfbf7;      /* Yumshoq, iliq krem fon */
             --text-color: #2b2b2b;    /* To'q matn */
             --card-bg: #ffffff;
-            --shadow: 0 10px 30px rgba(197, 160, 89, 0.15);
-            --light-gold: #f4ece1;
+            --shadow: 0 10px 30px rgba(184, 134, 11, 0.15);
+            --light-gold: #f8f3e8;
         }
 
         * {
@@ -32,7 +33,7 @@
             font-family: 'Montserrat', sans-serif;
             display: flex;
             justify-content: center;
-            padding: 15px;
+            padding: 20px 12px;
             overflow-x: hidden;
         }
 
@@ -51,19 +52,19 @@
         .music-hint {
             display: flex;
             align-items: center;
-            gap: 6px;
-            background: rgba(0, 0, 0, 0.6);
+            gap: 8px;
+            background: rgba(0, 0, 0, 0.7);
             color: #fff;
-            padding: 6px 12px;
+            padding: 8px 14px;
             border-radius: 20px;
-            font-size: 0.8rem;
-            backdrop-filter: blur(4px);
-            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+            font-size: 0.82rem;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
             transition: all 0.6s cubic-bezier(0.68, -0.55, 0.27, 1.55);
             transform-origin: right center;
         }
 
-        /* Strelkaning bounce animatsiyasi */
+        /* Strelkaning o'ngga (tugmaga) qaratib qimirlash animatsiyasi */
         .hint-arrow {
             color: var(--primary-color);
             font-size: 0.9rem;
@@ -72,10 +73,9 @@
 
         @keyframes bounceArrow {
             0% { transform: translateX(0); }
-            100% { transform: translateX(5px); } 
+            100% { transform: translateX(5px); }
         }
 
-        /* Tugma bosilganda ko'rsatkich yo'qolishi */
         .music-hint.hide-hint {
             opacity: 0;
             transform: scale(0) rotate(-360deg);
@@ -91,7 +91,7 @@
             color: #fff;
             border: none;
             font-size: 1.2rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.4);
             cursor: pointer;
             transition: transform 0.3s ease;
             display: flex;
@@ -108,104 +108,163 @@
             100% { transform: rotate(360deg); }
         }
 
-        /* Mobile Container */
+        /* Asosiy Konteyner (Desktopda o'rtacha va chiroyli sig'adi) */
         .container {
             width: 100%;
-            max-width: 450px; 
+            max-width: 500px;
             display: flex;
             flex-direction: column;
-            gap: 20px;
+            gap: 22px;
         }
 
-        /* Card layout */
+        /* Kartalar ko'rinishi */
         .card {
             background: var(--card-bg);
-            border: 1px solid rgba(197, 160, 89, 0.3);
+            border: 1px solid rgba(184, 134, 11, 0.25);
             border-radius: 20px;
-            padding: 25px 20px;
+            padding: 26px 20px;
             text-align: center;
             box-shadow: var(--shadow);
             position: relative;
         }
 
+        /* HERO SECTION - Bayramona va aniq ko'rinish */
+        .hero-card {
+            background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.35)), 
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=1000&q=80') center/cover no-repeat;
+            color: #ffffff;
+            padding: 45px 20px;
+            border: none;
+        }
+
+        .hero-card .bismillah-uz {
+            color: #f1f1f1;
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .hero-card h3 {
+            font-family: 'Cinzel', serif;
+            letter-spacing: 2px;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            color: #f8f3e8;
+            margin-top: 5px;
+        }
+
+        .hero-card .names {
+            font-family: 'Great Vibes', cursive;
+            font-size: 3.4rem;
+            color: #ffffff;
+            text-shadow: 2px 2px 6px rgba(0,0,0,0.6);
+            margin: 15px 0;
+        }
+
+        .hero-card .date-badge {
+            display: inline-block;
+            border-top: 1px solid #ffffff;
+            border-bottom: 1px solid #ffffff;
+            padding: 6px 20px;
+            font-family: 'Cinzel', serif;
+            font-size: 1.1rem;
+            letter-spacing: 3px;
+        }
+
         /* Bismillah va Oyat */
         .bismillah-ar {
             font-family: 'Amiri', serif;
-            font-size: 1.8rem;
+            font-size: 1.9rem;
             color: var(--primary-color);
             margin-bottom: 5px;
+            font-weight: 700;
         }
 
         .bismillah-uz {
             font-size: 0.85rem;
-            color: #777;
+            color: #666;
             font-style: italic;
         }
 
         .divider {
             color: var(--primary-color);
-            margin: 15px 0;
-            font-size: 1.2rem;
+            margin: 14px 0;
+            font-size: 1.1rem;
         }
 
         .quran-ayata {
             font-family: 'Amiri', serif;
-            font-size: 1.05rem;
+            font-size: 1.1rem;
             line-height: 1.6;
-            color: #444;
+            color: #333;
         }
 
         .quran-ayata span {
-            font-size: 0.8rem;
+            font-size: 0.82rem;
             color: var(--primary-color);
             display: block;
-            margin-top: 5px;
+            margin-top: 6px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
         }
 
-        /* Kelin Kuyov bo'limi */
-        .couple h2 {
-            font-size: 0.9rem;
+        /* Sarlavhalar Kontrasti */
+        .section-header {
+            font-family: 'Cinzel', serif;
+            font-size: 1.2rem;
+            color: var(--primary-color);
+            font-weight: 700;
+            letter-spacing: 1.5px;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            color: #888;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
 
+        /* KELIN VA KUYOV RASMI - O'LCHAMLARI TO'G'RILANDI */
         .photo-frame {
-            width: 180px;
-            height: 180px;
-            margin: 0 auto 15px;
+            width: 170px;
+            height: 170px;
+            margin: 0 auto 18px;
             border-radius: 50%;
             border: 3px solid var(--primary-color);
             padding: 5px;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.1);
+            background-color: #ffffff;
             overflow: hidden;
         }
 
-        .photo-frame img, .venue-img-box img {
+        .photo-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
             border-radius: 50%;
-        }
-
-        .venue-img-box img {
-            border-radius: 12px;
-        }
-
-        .names {
-            font-family: 'Great Vibes', cursive;
-            font-size: 3rem;
-            color: var(--primary-color);
-            margin-bottom: 10px;
+            display: block;
         }
 
         .parents-text {
             font-size: 0.95rem;
-            line-height: 1.5;
+            line-height: 1.6;
+            color: #444;
+        }
+
+        .dua-text {
+            font-style: italic;
+            font-size: 0.9rem;
             color: #555;
         }
 
-        /* Countdown */
+        .family-name {
+            font-size: 0.95rem;
+            color: #333;
+            font-weight: 600;
+            margin-top: 3px;
+        }
+
+        /* TAYMER BLOKI */
+        .timer-card {
+            background: linear-gradient(135deg, #ffffff 0%, #fdfaf3 100%);
+            border: 2px solid rgba(184, 134, 11, 0.4);
+            box-shadow: 0 12px 30px rgba(184, 134, 11, 0.16);
+        }
+
         .timer {
             display: flex;
             justify-content: space-around;
@@ -213,56 +272,103 @@
         }
 
         .time-box {
-            background: #fdfaf3;
-            border: 1px solid var(--primary-color);
-            border-radius: 10px;
-            padding: 10px;
-            min-width: 65px;
+            background: #ffffff;
+            border: 1.5px solid var(--primary-color);
+            border-radius: 12px;
+            padding: 10px 8px;
+            min-width: 68px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
         }
 
         .time-box span {
-            font-size: 1.4rem;
-            font-weight: 600;
+            font-size: 1.45rem;
+            font-weight: 700;
             color: var(--primary-color);
             display: block;
         }
 
         .time-box p {
-            font-size: 0.75rem;
-            color: #666;
+            font-size: 0.72rem;
+            color: #555;
+            text-transform: uppercase;
+            font-weight: 600;
+            margin-top: 2px;
         }
 
-        /* To'yxona va Tugmalar */
+        /* TIMELINE / DASTUR TARTIBI */
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+            margin-top: 15px;
+            text-align: left;
+        }
+
+        .timeline-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            background: var(--light-gold);
+            padding: 12px 16px;
+            border-radius: 14px;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .timeline-time {
+            font-family: 'Cinzel', serif;
+            font-weight: 700;
+            font-size: 1.05rem;
+            color: var(--primary-color);
+            min-width: 55px;
+        }
+
+        .timeline-text {
+            font-size: 0.9rem;
+            color: #333;
+            font-weight: 500;
+        }
+
+        /* To'yxona va Manzil */
         .venue-img-box {
             width: 100%;
             height: 180px;
-            border-radius: 12px;
+            border-radius: 14px;
             overflow: hidden;
             margin: 15px 0;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.06);
+        }
+
+        .venue-img-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 14px;
         }
 
         .venue h4 {
             font-size: 1.3rem;
             color: var(--primary-color);
             margin-bottom: 8px;
+            font-weight: 700;
         }
 
         .address, .date-time {
             font-size: 0.9rem;
-            color: #555;
+            color: #444;
             margin-bottom: 8px;
+            font-weight: 500;
         }
 
         .btn-group {
             display: flex;
             flex-direction: column;
             gap: 10px;
-            margin-top: 15px;
+            margin-top: 18px;
         }
 
         .btn {
             text-decoration: none;
-            padding: 12px 20px;
+            padding: 13px 20px;
             border-radius: 30px;
             font-size: 0.9rem;
             font-weight: 600;
@@ -278,54 +384,90 @@
         .btn-primary {
             background-color: var(--primary-color);
             color: #fff;
+            box-shadow: 0 4px 12px rgba(184, 134, 11, 0.3);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
         }
 
         .btn-secondary {
             background-color: transparent;
             color: var(--primary-color);
-            border: 1px solid var(--primary-color);
+            border: 1.5px solid var(--primary-color);
         }
 
         .btn:active {
             transform: scale(0.98);
         }
 
-        .dua-text {
-            font-style: italic;
-            font-size: 0.9rem;
-            color: #555;
-            margin-bottom: 10px;
+        /* RSVP Form (Tashrifni tasdiqlash) */
+        .form-group {
+            text-align: left;
+            margin-bottom: 14px;
         }
 
-        .family-name {
-            font-size: 0.95rem;
-            color: #333;
+        .form-group label {
+            display: block;
+            font-size: 0.82rem;
             font-weight: 600;
+            color: #555;
+            margin-bottom: 6px;
+            padding-left: 4px;
         }
 
-        /* RSVP Form & Success */
-        .guest-input {
+        .guest-input, .guest-select {
             width: 100%;
-            padding: 14px;
-            border: 1px solid var(--primary-color);
-            border-radius: 25px;
+            padding: 12px 15px;
+            border: 1.5px solid rgba(184, 134, 11, 0.4);
+            border-radius: 14px;
             outline: none;
-            font-size: 0.95rem;
-            text-align: center;
+            font-size: 0.92rem;
             font-family: 'Montserrat', sans-serif;
-            margin-bottom: 12px;
             background: #fdfaf3;
+            color: #333;
+            transition: border-color 0.3s ease;
+        }
+
+        .guest-input:focus, .guest-select:focus {
+            border-color: var(--primary-color);
+            background: #ffffff;
+        }
+
+        .radio-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            background: #fdfaf3;
+            padding: 12px;
+            border-radius: 14px;
+            border: 1.5px solid rgba(184, 134, 11, 0.4);
+        }
+
+        .radio-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.88rem;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .radio-option input[type="radio"] {
+            accent-color: var(--primary-color);
+            width: 16px;
+            height: 16px;
         }
 
         .success-box {
             display: none;
             background-color: #e8f5e9;
             color: #2e7d32;
-            padding: 15px;
+            padding: 16px;
             border-radius: 15px;
             border: 1px solid #a5d6a7;
             font-weight: 600;
-            margin-top: 10px;
+            margin-top: 12px;
             animation: fadeIn 0.5s ease;
         }
 
@@ -336,9 +478,9 @@
 
         footer {
             text-align: center;
-            padding: 15px 0;
+            padding: 15px 0 5px;
             font-size: 0.8rem;
-            color: #888;
+            color: #777;
         }
     </style>
 </head>
@@ -350,13 +492,11 @@
             <source src="audio.mp3" type="audio/mp3">
         </audio>
 
-        <!-- Strelka va ko'rsatkich -->
         <div class="music-hint" id="musicHint">
             <span>Musiqani yoqing</span>
             <i class="fas fa-arrow-right hint-arrow"></i>
         </div>
 
-        <!-- Musiqa tugmasi -->
         <button class="music-btn" id="musicToggle" onclick="toggleMusic()">
             <i class="fas fa-music" id="musicIcon"></i>
         </button>
@@ -364,10 +504,17 @@
 
     <div class="container">
         
+        <!-- HERO SECTION (Yorug'roq va Bayramona) -->
+        <div class="card hero-card">
+            <div class="bismillah-uz">Bismillahir Rohmanir Rohiym</div>
+            <h3>Bizning To'yimizga Taklif Etamiz</h3>
+            <h1 class="names">Shamsiddin & Gulshoda</h1>
+            <div class="date-badge">09 . 10 . 2026</div>
+        </div>
+
         <!-- BISMILLAH VA OYAT KARTASI -->
         <div class="card">
             <div class="bismillah-ar">بِسْمِ ٱللَّهِ ٱلرَّحْمَٰنِ ٱلرَّحِيمِ</div>
-            <div class="bismillah-uz">Bismillahir Rohmanir Rohiym</div>
             <div class="divider">✦ ✦ ✦</div>
             <div class="quran-ayata">
                 «Uning alomatlaridan biri – sizlar orom olishingiz uchun o'zingizdan juftlar yaratgani va o'rtangizda muhabbat hamda marhamat paydo qilganidir...»
@@ -376,12 +523,11 @@
         </div>
 
         <!-- KELIN KUYOV KARTASI -->
-        <div class="card couple">
-            <h2>Bizning To'yimizga Taklif Etamiz</h2>
+        <div class="card">
+            <h2 class="section-header">BAXT KECHASI</h2>
             <div class="photo-frame">
                 <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=500&q=80" alt="Kelin va Kuyov">
             </div>
-            <h1 class="names">Shamsiddin & Gulshoda</h1>
             <p class="parents-text">
                 Hayotimizning eng quvonchli va go'zal kunida siz azizlarni hamroh ko'rishdan behad mamnun bo'lamiz!
             </p>
@@ -391,8 +537,8 @@
         </div>
 
         <!-- COUNTDOWN KARTASI -->
-        <div class="card">
-            <h3 style="font-size: 1.1rem; color: var(--primary-color);">Tantanagacha Qoldi:</h3>
+        <div class="card timer-card">
+            <h2 class="section-header">TANTANAGACHA QOLDI</h2>
             <div class="timer" id="timer">
                 <div class="time-box"><span id="days">00</span><p>Kun</p></div>
                 <div class="time-box"><span id="hours">00</span><p>Soat</p></div>
@@ -401,13 +547,32 @@
             </div>
         </div>
 
+        <!-- DASTUR TARTIBI (TIMELINE) -->
+        <div class="card">
+            <h2 class="section-header">DASTUR TARTIBI</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-time">18:00</div>
+                    <div class="timeline-text">Mehmonlarni kutib olish</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">18:30</div>
+                    <div class="timeline-text">Kelin-kuyovning kirib kelishi</div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-time">19:00</div>
+                    <div class="timeline-text">Tantanali kecha va nikoh marosimi</div>
+                </div>
+            </div>
+        </div>
+
         <!-- TO'YXONA VA MANZIL KARTASI -->
         <div class="card venue">
-            <h3 style="font-size: 1.1rem; color: #888; text-transform: uppercase; letter-spacing: 1px;">Tantana Joyi</h3>
+            <h2 class="section-header">TANTANA JOYI</h2>
             <div class="venue-img-box">
                 <img src="https://images.unsplash.com/photo-1519167758481-83f550bb49b3?auto=format&fit=crop&w=800&q=80" alt="To'yxona">
             </div>
-            <h4>"BRENDHALL" Restorani</h4>
+            <h4 style="font-family: 'Cinzel', serif;">"BRENDHALL" Restorani</h4>
             <p class="date-time"><i class="far fa-calendar-alt" style="color: var(--primary-color);"></i> 9-Oktabr, 2026-yil | Soat 18:00</p>
             <p class="address"><i class="fas fa-map-marker-alt" style="color: var(--primary-color);"></i> Toshkent shahri, Dehqonobod ko'chasi, 15/14-uy</p>
             
@@ -423,24 +588,51 @@
 
         <!-- TASHRIFNI TASDIQLASH (RSVP) -->
         <div class="card">
-            <h3 style="font-size: 1.1rem; color: var(--primary-color); margin-bottom: 10px;">Tashrifni Tasdiqlash</h3>
-            <p style="font-size: 0.85rem; color: #666; margin-bottom: 15px;">Iltimos, ismingiz va familiyangizni kiriting:</p>
+            <h2 class="section-header">TASHRIFNI TASDIQLASH</h2>
             
-            <input type="text" id="guestName" class="guest-input" placeholder="Ism va Familiyangiz..." autocomplete="off">
-            
-            <button onclick="submitRSVP()" id="submitBtn" class="btn btn-primary" style="width: 100%;">
-                <i class="fas fa-check-circle"></i> Tashrifni Tasdiqlash
-            </button>
+            <div id="rsvpForm">
+                <div class="form-group">
+                    <label>Ism va Familiyangiz:</label>
+                    <input type="text" id="guestName" class="guest-input" placeholder="Ism va Familiyangiz..." autocomplete="off">
+                </div>
+
+                <div class="form-group">
+                    <label>Tashrif holati:</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="attendance" value="Ajoyib mamnuniyat bilan boraman" checked>
+                            <span>Ajoyib mamnuniyat bilan boraman</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="attendance" value="Afsuski, kela olmayman">
+                            <span>Afsuski, kela olmayman</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group" id="guestsCountGroup">
+                    <label>Mehmonlar soni:</label>
+                    <select id="guestCount" class="guest-select">
+                        <option value="1 kishi">1 kishi</option>
+                        <option value="2 kishi">2 kishi</option>
+                        <option value="Oilaviy">Oilaviy</option>
+                    </select>
+                </div>
+
+                <button onclick="submitRSVP()" id="submitBtn" class="btn btn-primary" style="width: 100%; margin-top: 10px;">
+                    <i class="fas fa-check-circle"></i> Tashrifni Tasdiqlash
+                </button>
+            </div>
 
             <div id="successMessage" class="success-box">
-                <i class="fas fa-heart" style="font-size: 1.3rem; color: #e53935; display: block; margin-bottom: 5px;"></i>
-                Rahmat! Siz to'y uchun o'z joyingizni band qildingiz!
+                <i class="fas fa-heart" style="font-size: 1.4rem; color: #e53935; display: block; margin-bottom: 6px;"></i>
+                <span id="successText">Rahmat! Javobingiz muvaffaqiyatli qabul qilindi.</span>
             </div>
         </div>
 
         <footer>
             <p>Sizni to'yimizda kutib qolamiz!</p>
-            <p style="margin-top: 5px; font-size: 0.75rem;">© 2026 All Rights Reserved</p>
+            <p style="margin-top: 4px; font-size: 0.75rem;">© 2026 All Rights Reserved</p>
         </footer>
 
     </div>
@@ -490,12 +682,29 @@
         setInterval(updateCountdown, 1000);
         updateCountdown();
 
+        // Radio button o'zgarganda mehmonlar sonini yashirish/ko'rsatish
+        document.querySelectorAll('input[name="attendance"]').forEach((elem) => {
+            elem.addEventListener("change", function(event) {
+                const countGroup = document.getElementById('guestsCountGroup');
+                if (event.target.value === "Afsuski, kela olmayman") {
+                    countGroup.style.display = "none";
+                } else {
+                    countGroup.style.display = "block";
+                }
+            });
+        });
+
         // 3. Google Sheets Avtomatik Yuborish Funksiyasi
         function submitRSVP() {
             const nameInput = document.getElementById('guestName');
             const submitBtn = document.getElementById('submitBtn');
+            const rsvpForm = document.getElementById('rsvpForm');
             const successMsg = document.getElementById('successMessage');
+            const successText = document.getElementById('successText');
+            
             const guestName = nameInput.value.trim();
+            const attendance = document.querySelector('input[name="attendance"]:checked').value;
+            const guestCount = attendance === "Afsuski, kela olmayman" ? "-" : document.getElementById('guestCount').value;
 
             if (guestName === "") {
                 alert("Iltimos, ism va familiyangizni kiriting!");
@@ -513,11 +722,19 @@
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ name: guestName })
+                body: JSON.stringify({ 
+                    name: guestName,
+                    status: attendance,
+                    count: guestCount
+                })
             })
             .then(() => {
-                nameInput.style.display = 'none';
-                submitBtn.style.display = 'none';
+                rsvpForm.style.display = 'none';
+                if (attendance === "Afsuski, kela olmayman") {
+                    successText.innerText = "E'tiboringiz uchun rahmat!";
+                } else {
+                    successText.innerText = "Rahmat! Siz to'y uchun o'z joyingizni band qildingiz!";
+                }
                 successMsg.style.display = 'block';
             })
             .catch(error => {
@@ -527,25 +744,6 @@
                 submitBtn.disabled = false;
             });
         }
-/* --- KELIN VA KUYOV RASMI DOIRA STILI --- */
-.photo-frame {
-    width: 180px;
-    height: 180px;
-    margin: 0 auto 20px;
-    border-radius: 50%;
-    border: 3px solid #b8860b;
-    padding: 5px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-    background-color: #ffffff;
-}
-
-.photo-frame img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 50%;
-    display: block;
-}
     </script>
 </body>
 </html>
